@@ -1,118 +1,243 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
+import styles from "./page.module.scss";
 
 export default function Home() {
+  const parallax = useRef<IParallax>(null!);
+  const hoa1 = "/imgs/home1.png";
+  const hoa2 = "/imgs/home2.png";
+  const hoa3 = "/imgs/home3.png";
+  const hoa4 = "/imgs/home4.png";
+  const conmeo = "/conmeo.png";
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Head>
+        <title>10 billion</title>
+      </Head>
+
+      <div className={styles.container}>
+        <Parallax ref={parallax} pages={3}>
+          <ParallaxLayer offset={1} speed={1} className={styles.section1} />
+          <ParallaxLayer offset={2} speed={1} className={styles.section2} />
+
+          <ParallaxLayer
+            offset={0}
+            speed={0}
+            factor={3}
+            className={styles.home}
+          />
+
+          <ParallaxLayer
+            offset={1.3}
+            speed={0.8}
+            style={{ pointerEvents: "none" }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+            <img
+              src={conmeo}
+              style={{ width: "15%", marginLeft: "70%" }}
+              alt=""
             />
-          </a>
-        </div>
+          </ParallaxLayer>
+
+          {/* TIEU DE 1 */}
+          <ParallaxLayer offset={0} speed={-0.3}>
+            <img
+              src={hoa2}
+              style={{ display: "block", width: "50%", marginLeft: "50%" }}
+            />
+          </ParallaxLayer>
+          <ParallaxLayer className={styles.intro} offset={0} speed={0.8}>
+            <div>
+              <h1>Hello</h1>
+              <p>We are 10 million fans group, we are family</p>
+              <div
+                style={{ display: "flex", marginTop: "12px", flexWrap: "wrap" }}
+              >
+                <img
+                  src="/imgs/quan1.png"
+                  alt="quan"
+                  style={{ width: 100, height: 100 }}
+                />
+                <img
+                  src="/imgs/cuong1.png"
+                  alt="cuong"
+                  style={{ width: 100, height: 100 }}
+                />
+                <img
+                  src="/imgs/tranphanh.png"
+                  alt="tphanh"
+                  style={{ width: 100, height: 100 }}
+                />
+                <img
+                  src="/imgs/quyen5.png"
+                  alt="quyen"
+                  style={{ width: 100, height: 100 }}
+                />
+                <img
+                  src="/imgs/ngoc5.png"
+                  alt="ngoc"
+                  style={{ width: 100, height: 100 }}
+                />
+              </div>
+            </div>
+          </ParallaxLayer>
+
+          {/* Đoạn 1 */}
+          <ParallaxLayer
+            offset={1}
+            speed={0.1}
+            onClick={() => parallax.current.scrollTo(2)}
+            className={styles.content1}
+          >
+            <div className={styles.images} style={{ maxHeight: "297px" }}>
+              <div style={{ display: "flex", height: "50%" }}>
+                <div style={{ minWidth: "50%" }}>
+                  <img src="/imgs/tet20212.jpg" alt="" />
+                </div>
+                <div style={{ minWidth: "50%" }}>
+                  {" "}
+                  <img src="/imgs/tet20213.jpg" alt="" />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", height: "50%" }}>
+                <div style={{ minWidth: "33%" }}>
+                  <img src="/imgs/tet20214.jpg" alt="" />
+                </div>
+                <div style={{ minWidth: "33%" }}>
+                  <img src="/imgs/tet20211.jpg" alt="" />
+                </div>
+                <div style={{ minWidth: "33%" }}>
+                  <img src="/imgs/tet20216.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div className={styles.time}>
+              <p
+                style={{
+                  paddingTop: "20px",
+                  fontSize: "110%",
+                }}
+              >
+                Hồ tây - ngày 10 tháng 10 năm 2020
+              </p>
+              <p>{"Homestay hơi chật, nhưng vui =)))"}</p>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={1.75} speed={0.5} style={{ opacity: 0.1 }}>
+            <img
+              src={hoa1}
+              style={{ display: "block", width: "20%", marginLeft: "70%" }}
+            />
+            <img
+              src={hoa3}
+              style={{ display: "block", width: "20%", marginLeft: "40%" }}
+            />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 0.2 }}>
+            <img
+              src={hoa4}
+              style={{ display: "block", width: "10%", marginLeft: "10%" }}
+            />
+            <img
+              src={hoa2}
+              style={{ display: "block", width: "20%", marginLeft: "75%" }}
+            />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={1.6} speed={-0.1} style={{ opacity: 0.4 }}>
+            <img
+              src={hoa3}
+              style={{ display: "block", width: "20%", marginLeft: "60%" }}
+            />
+            <img
+              src={hoa4}
+              style={{ display: "block", width: "25%", marginLeft: "30%" }}
+            />
+            <img
+              src={hoa2}
+              style={{ display: "block", width: "10%", marginLeft: "80%" }}
+            />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={2.6} speed={0.4} style={{ opacity: 0.6 }}>
+            <img
+              src={hoa3}
+              style={{ display: "block", width: "20%", marginLeft: "5%" }}
+            />
+            <img
+              src={hoa1}
+              style={{ display: "block", width: "15%", marginLeft: "75%" }}
+            />
+          </ParallaxLayer>
+
+          <ParallaxLayer
+            offset={2.5}
+            speed={-0.4}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              pointerEvents: "none",
+            }}
+          >
+            <img src={hoa1} style={{ width: "30%" }} />
+          </ParallaxLayer>
+
+          <ParallaxLayer
+            offset={2}
+            speed={-0.3}
+            style={{
+              backgroundSize: "80%",
+              backgroundPosition: "center",
+            }}
+          />
+
+          {/* Đoạn 2  */}
+          <ParallaxLayer
+            offset={2}
+            speed={-0}
+            onClick={() => parallax.current.scrollTo(0)}
+            className={styles.content1}
+          >
+            <div className={styles.images}>
+              <div style={{ display: "flex", height: "50%" }}>
+                <div style={{ minWidth: "72.72%" }}>
+                  <img src="/imgs/common5.jpg" alt="" />
+                </div>
+
+                <div style={{ minWidth: "27.27%" }}>
+                  <img src="/imgs/hotay11.jpg" alt="" />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", height: "50%" }}>
+                <div style={{ minWidth: "27.27%" }}>
+                  <img src="/imgs/hotay5.jpg" alt="" />
+                </div>
+                <div style={{ minWidth: "72.72%" }}>
+                  <img src="/imgs/hotay2.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div className={styles.time}>
+              <p
+                style={{
+                  paddingTop: "20px",
+                  fontSize: "110%",
+                }}
+              >
+                Hồ tây - ngày 10 tháng 10 năm 2020
+              </p>
+              <p>{"Homestay hơi chật, nhưng vui =)))"}</p>
+            </div>
+          </ParallaxLayer>
+        </Parallax>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }
