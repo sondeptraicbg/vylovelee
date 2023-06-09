@@ -51,7 +51,7 @@ export default function Home() {
           <ParallaxLayer className={styles.intro} offset={0} speed={0.8}>
             <div>
               <h1>Hello</h1>
-              <p>We are 10 million fans group, we are family</p>
+              <p>We are 10 billion fans group, we are family</p>
               <div
                 style={{ display: "flex", marginTop: "12px", flexWrap: "wrap" }}
               >
